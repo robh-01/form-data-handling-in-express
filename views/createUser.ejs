@@ -26,8 +26,14 @@
         placeholder="Input your bio-data here"
         maxlength="200"
       ></textarea>
-
       <button type="submit">Submit</button>
+    </form>
+
+    <h1>Want to see if a user already exist?</h1>
+    <form action="/search" method="get">
+      <label for="searchMail">Search by email: </label>
+      <input name="email" id="searchMail" placeholder="searchMail@mail.com" />
+      <button type="submit">Search</button>
     </form>
     <a href="/">Back to home!</a>
   </body>

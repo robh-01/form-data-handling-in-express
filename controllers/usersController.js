@@ -88,6 +88,17 @@ function userDeletePost(req, res) {
   res.redirect("/");
 }
 
+function userSearchGet(req, res) {
+  const searchEmail = req.query.email;
+  const users = userStorage.getUsers();
+  const foundUser = users.find(user => user.email === searchEmail);
+  res.render("search", { 
+    title: "Search Results",
+    searchEmail,
+    user: foundUser
+  });
+}
+
 export {
   userListGet,
   userCreateGet,
@@ -95,4 +106,5 @@ export {
   userUpdateGet,
   userUpdatePost,
   userDeletePost,
+  userSearchGet,
 };
