@@ -31,6 +31,20 @@ const validateUser = [
     .withMessage(`Last name ${alphaErr}`)
     .isLength({ min: 1, max: 10 })
     .withMessage(`Last name ${lengthErr}`),
+  body("email")
+    .trim()
+    .isEmail()
+    .withMessage("Email address must be in proper format"),
+  body("age")
+    .optional({ values: "falsy" })
+    .trim()
+    .isInt({ min: 18, max: 120 })
+    .withMessage("Age must be between 18 and 120"),
+  body("bio")
+    .optional({ values: "falsy" })
+    .trim()
+    .isLength({ max: 200 })
+    .withMessage("Bio must be 200 characters or less"),
 ];
 
 const userCreatePost = [
@@ -43,8 +57,8 @@ const userCreatePost = [
         .status(400)
         .render("createUser", { title: "Create user", errors: errors.array() });
     }
-    const { firstName, lastName } = req.body;
-    userStorage.addUser({ firstName, lastName });
+    const { firstName, lastName, email, age, bio } = req.body;
+    userStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect("/");
   },
 ];
@@ -62,8 +76,8 @@ const userUpdatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName } = req.body;
-    userStorage.updateUser(userId, { firstName, lastName });
+    const { firstName, lastName, email, age, bio } = req.body;
+    userStorage.updateUser(userId, { firstName, lastName, email, age, bio });
     res.redirect("/");
   },
 ];

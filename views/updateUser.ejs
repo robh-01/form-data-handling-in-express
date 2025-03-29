@@ -23,6 +23,21 @@
         name="lastName"
         value="<%= user.lastName %>"
       />
+      <label for="mail">Email:</label>
+      <input type="email" id="mail" name="email" value="<%= user.email %>" />
+      <label for="age">Age: </label>
+      <input
+        name="age"
+        type="number"
+        id="age"
+        min="18"
+        max="120"
+        value="<%= user.age %>"
+      />
+      <br />
+      <label for="bio">Bio: </label>
+      <textarea name="bio" id="bio" maxlength="200" ><%= user.bio %></textarea>
+
       <button type="submit">Submit</button>
     </form>
   </body>
